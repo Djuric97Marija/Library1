@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #1e4711;
+    font-family: 'Poppins', sans-serif;
+}
+.logo{
+    color: #1e4711;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
