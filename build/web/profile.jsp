@@ -4,9 +4,9 @@
     Author     : Marija
 --%>
 <%@page import="Models.Issue"%>
-<%@page import="RepoPattern.issueRepo"%>
+<%@page import="RepoPattern.IssueRepo"%>
 <%@page import="Models.Student"%>
-<%@page import="RepoPattern.studentRepo"%>
+<%@page import="RepoPattern.StudentRepo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -99,7 +99,7 @@
                 loggedRole = "" + (request.getSession().getAttribute("loggedRole"));
             }
             String Id = request.getParameter("studentId");
-            Student student = new studentRepo().select(Id);
+            Student student = new StudentRepo().select(Id);
         %>
         <form style="margin-left: 10%; margin-top: -2%; margin-bottom: 5%; opacity: 0.7; width: 70rem; background: rgba(0,0,0,0.7); color: white">
             <h2 align="center" style="padding:4%; margin-top: 5%;">My profile</h2>
@@ -141,8 +141,8 @@
                     </tr>
                 </thead>
                 <%
-                    Student stud = new studentRepo().selectByUsername((String) request.getSession().getAttribute("logged"));
-                    for (Issue issue : new issueRepo().listActiveIssue()) {
+                    Student stud = new StudentRepo().selectByUsername((String) request.getSession().getAttribute("logged"));
+                    for (Issue issue : new IssueRepo().listActiveIssue()) {
                         if (stud.getStudentId() == issue.getStudentId()) {
                 %>
                 <tr>

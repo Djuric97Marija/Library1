@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Marija
  */
-public interface issueDAO {
+public interface IssueDAO {
     
     boolean insert(Issue issue) throws SQLException;
     boolean delete(String Id) throws SQLException;

@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="RepoPattern.bookRepo"%>
+<%@page import="RepoPattern.BookRepo"%>
 <%@page import="Models.Book"%>
 <!DOCTYPE html>
 <html lang="sr">
@@ -82,7 +82,6 @@
         <%@include file="navbar.jsp" %> 
         <%
             String result = (String) request.getAttribute("result");
-
             if (result != null)
                  if (result.equals("True")) {%>
         <script type="text/javascript">
@@ -90,11 +89,8 @@
                     .then(function () {
                         window.location = "allBooks.jsp";
                     });
-
         </script>
-
         <%   } else if (result.equals("False")) {%>
-
         <script type="text/javascript">
             swal("Error", "Error explained", "error")
                     .then(function () {
@@ -110,7 +106,7 @@
         }%>
 
     <ul id="myUL" class="list-unstyled">
-        <%  for (Book book : new bookRepo().list()) {
+        <%  for (Book book : new BookRepo().list()) {
                 {
         %>
         <li>
@@ -131,19 +127,14 @@
                     <div>
                         <a href="${pageContext.request.contextPath}/makeIssue.jsp?bookId=<%=book.getBookId()%>" class="btn btn-secondary" >Reservation</a>
                     </div>
-                    <% }
-                        if (loggedRole.equals("1")) {%> 
-                    <a href="${pageContext.request.contextPath}/editAranzmana.jsp?buketId=<%=book.getBookId()%>" class="btn btn-secondary" >Update</a>
-                    <br>   <br>
+                    
                     <%}%>
-                    <% if (!pom) {%>
-                    <a href="${pageContext.request.contextPath}/makeIssue.jsp?bookId=<%=book.getBookId()%>" class="btn btn-secondary" >Reservation</a>
-
+                    
                 </div>
             </div>
         </li>
         <%}
-                }
+                
             }%>
     </ul>
     <a style="margin-left: 90%; " href="#top">

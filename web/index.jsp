@@ -193,7 +193,7 @@
     if (request.getAttribute("firstLogin") != null)
         if (request.getAttribute("firstLogin").equals("True")) {%>
 <script type="text/javascript">
-            swal("Welcome  <%=Name%>!", "Bravisimo! ", "success")
+            swal("Welcome  <%=Name%>!", "Succes! ", "success")
                     .then(function () {
                         window.location = "index.jsp";
                     });

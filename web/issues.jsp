@@ -4,9 +4,9 @@
     Author     : Marija
 --%>
 
-<%@page import="RepoPattern.issueRepo"%>
+<%@page import="RepoPattern.IssueRepo"%>
 <%@page import="Models.Issue"%>
-<%@page import="RepoPattern.studentRepo"%>
+<%@page import="RepoPattern.StudentRepo"%>
 <%@page import="Models.Student"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
@@ -93,18 +93,17 @@
                     });
         </script>
       
-
         <% }
             String loggedRole = "";
             if (request.getSession().getAttribute("loggedRole") != null) {
                 loggedRole = "" + (request.getSession().getAttribute("loggedRole"));
             }
             String Id = request.getParameter("studentId");
-            Student student = new studentRepo().select(Id);
+            Student student = new StudentRepo().select(Id);
         %>
         <form style="margin-left: 10%; margin-top: 2%; margin-bottom: 10%; opacity: 0.7; width: 70rem; background: rgba(0,0,0,0.7); color: white">
 
-            <h2 align="center" style="padding:2%;">My Reservations</h2>
+            <h2 align="center" style="padding:2%;">Issued Books</h2>
             <input value="<%=request.getParameter("studentId")%>" name="studentId" type="hidden">  
             <% if (loggedRole.equals("2")) {%>
             <table style="width: 100%; margin-bottom: 6%;">
@@ -120,8 +119,8 @@
                     </tr>
                 </thead>
                 <%
-                    Student stud = new studentRepo().selectByUsername((String) request.getSession().getAttribute("logged"));
-                    for (Issue issue : new issueRepo().listActiveIssue()) {
+                    Student stud = new StudentRepo().selectByUsername((String) request.getSession().getAttribute("logged"));
+                    for (Issue issue : new IssueRepo().listActiveIssue()) {
                         if (stud.getStudentId() == issue.getStudentId()) {
                 %>
                 <tr>
@@ -156,7 +155,7 @@
                     </tr>
                 </thead>
                 <%
-                    for (Issue issue : new issueRepo().listAllIssue()) {
+                    for (Issue issue : new IssueRepo().listAllIssue()) {
 
                 %>
                 <tr>
@@ -168,7 +167,7 @@
                     <td style="width:130px;" class="align-middle text-center" scope="col"><%=issue.getIssueDate()%></td>
                     <td style="width:130px;" class="align-middle text-center" scope="col"><%=issue.getReturnDate()%></td>
                     <td style="width:130px;" class="align-middle text-center"> 
-                        <a href="${pageContext.request.contextPath}/deleteIssue?issueId=<%=issue.getIssueId()%>">
+                        <a href="${pageContext.request.contextPath}/DeleteIssue?issueId=<%=issue.getIssueId()%>">
                             <i style="color: red; font-size: larger; border-width: thin;" class="fa fa-trash-alt">Returned</i>                                  
                         </a>
                     </td>

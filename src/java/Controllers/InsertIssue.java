@@ -5,55 +5,37 @@
  */
 package Controllers;
 
-import RepoPattern.studentRepo;
+import Models.Book;
+import Models.Issue;
+import Models.Student;
+import RepoPattern.BookRepo;
+import RepoPattern.IssueRepo;
+import RepoPattern.StudentRepo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
-import static java.util.logging.Level.SEVERE;
-import static java.util.logging.Logger.getLogger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Marija
  */
-public class deleteStudent extends HttpServlet {
+public class InsertIssue extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-           new studentRepo().delete(request.getParameter("studentId"));
-            request.setAttribute("result", "True");
-            request.getRequestDispatcher("studentList.jsp").forward(request, response);
-        }
-        catch (SQLException ex) {
-            
-            getLogger(deleteStudent.class.getName()).log(SEVERE, null, ex);
-        }
+        
+        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -72,6 +54,28 @@ public class deleteStudent extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        try {
+            Issue issue = new  Issue();
+            
+            Student s = new StudentRepo().selectByUsername((String) request.getSession().getAttribute("logged"));
+            issue.setStudentId(s.getStudentId());
+            issue.setBookId(parseInt(request.getParameter("bookId")));
+            issue.setIssueDate(request.getParameter("issueDate"));
+            issue.setReturnDate(request.getParameter("returnDate"));
+            
+            if(new IssueRepo().insert(issue)){
+               request.setAttribute("result", "True");
+               request.getRequestDispatcher("allBooks.jsp").forward(request, response);
+            }
+            else{
+                  request.setAttribute("result", "False");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }catch(NumberFormatException ex){
+             request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertIssue.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

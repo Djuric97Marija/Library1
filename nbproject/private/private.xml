@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/makeIssue.jsp</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/studentList.jsp</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/index.jsp</file>
             <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/src/java/RepoPattern/issueRepo.java</file>
             <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/profile.jsp</file>
-            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/src/java/DAO/issueDAO.java</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/allBooks.jsp</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/issues.jsp</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/src/java/Controllers/deleteStudent.java</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/insertBook.jsp</file>
+            <file>file:/C:/Users/Marija/Documents/NetBeansProjects/Library/web/signIn.jsp</file>
         </group>
     </open-files>
 </project-private>

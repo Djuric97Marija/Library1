@@ -1,7 +1,7 @@
 package Controllers;
 
 import Models.Student;
-import RepoPattern.studentRepo;
+import RepoPattern.StudentRepo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -30,9 +30,9 @@ public class Login extends HttpServlet {
              
             String  username = request.getParameter("username");
             String password = request.getParameter("password");
-            String loggedRole = new studentRepo().Role(username, password);
+            String loggedRole = new StudentRepo().Role(username, password);
             
-            if(new studentRepo().login(username, password)){
+            if(new StudentRepo().login(username, password)){
                 session.setAttribute("logged", username); 
                 session.setAttribute("loggedRole", loggedRole);
                 request.setAttribute("firstLogin", "True");

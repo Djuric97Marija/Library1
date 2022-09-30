@@ -4,7 +4,7 @@
     Author     : Marija
 --%>
 
-<%@page import="RepoPattern.studentRepo"%>
+<%@page import="RepoPattern.StudentRepo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -211,7 +211,7 @@
                     }
                     if ((request.getSession().getAttribute("logged")) != null) {%>
                 <li class="nav-item">
-                    <a class="nav-link" style="background-color:#e1d3c1;" href="${pageContext.request.contextPath}/profile.jsp?studentId=<%=new studentRepo().selectByUsername("" + request.getSession().getAttribute("logged")).getStudentId()%>">My Profile</a>          
+                    <a class="nav-link" style="background-color:#e1d3c1;" href="${pageContext.request.contextPath}/profile.jsp?studentId=<%=new StudentRepo().selectByUsername("" + request.getSession().getAttribute("logged")).getStudentId()%>">My Profile</a>          
                 </li> 
                 <li class="nav-item"><a  style="background-color:#e1d3c1;"class="nav-link" href="issues.jsp" data-target="#exampleModal" >Check Reservations</a></li>
 

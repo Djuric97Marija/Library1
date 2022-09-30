@@ -76,7 +76,6 @@
                 response.sendRedirect("index.jsp");
             }
         %>
-
         <%
             String rezultat = (String) request.getAttribute("result");
 
@@ -87,18 +86,14 @@
                     .then(function () {
                         window.location = "index.jsp";
                     });
-
         </script>
-
         <%   } else if (rezultat.equals("False")) {%>
-
         <script type="text/javascript">
             swal("Error", "error")
                     .then(function () {
                         window.location = "signIn.jsp";
                     });
         </script>
-
         <% }%>
 
     <center>
@@ -111,7 +106,7 @@
                 </tr>
                 <tr>
                     <td style="margin: 10px; padding: 10px;"> Password:</td>
-                    <td style="margin: 10px; padding: 10px;"><input oninvalid="this.setCustomValidity('Have to fill in input!')" class="form-control" required minLength="4" maxLength="19"  type="password" type="text" name="pass"></td>
+                    <td style="margin: 10px; padding: 10px;"><input oninvalid="this.setCustomValidity('Have to fill in input!Min lenght is 4!')" class="form-control" required minLength="4" maxLength="19"  type="password" type="text" name="pass"></td>
                 </tr>
                 <tr>
                     <td style="margin: 10px; padding: 10px;">First Name:</td>

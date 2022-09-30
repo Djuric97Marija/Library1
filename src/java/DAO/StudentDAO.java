@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Marija
  */
-public interface studentDAO {
+public interface StudentDAO {
     
     boolean insert(Student student) throws SQLException;
 

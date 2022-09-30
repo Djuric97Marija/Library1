@@ -5,8 +5,7 @@
  */
 package RepoPattern;
 
-import Controllers.deleteIssue;
-import DAO.issueDAO;
+import Controllers.DeleteIssue;
 import Models.Issue;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,27 +21,28 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.logging.Level.SEVERE;
 import static java.util.logging.Logger.getLogger;
+import DAO.IssueDAO;
 
 /**
  *
  * @author Marija
  */
-public class issueRepo implements issueDAO {
+public class IssueRepo implements IssueDAO {
 
     Connection con;
 
-    public issueRepo() {
+    public IssueRepo() {
         try {
             forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            getLogger(issueRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(IssueRepo.class.getName()).log(SEVERE, null, ex);
         }
 
         String URL = "jdbc:mysql://localhost:3306/library", USER = "root", PASS = "";
         try {
             con = getConnection(URL, USER, PASS);
         } catch (SQLException ex) {
-            getLogger(issueRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(IssueRepo.class.getName()).log(SEVERE, null, ex);
         }
     }
     @Override
@@ -97,7 +97,7 @@ public class issueRepo implements issueDAO {
             }
 
         } catch (SQLException ex) {
-            getLogger(issueRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(IssueRepo.class.getName()).log(SEVERE, null, ex);
         } finally {
             con.close();
         }
@@ -115,7 +115,7 @@ public class issueRepo implements issueDAO {
             psDelete.executeUpdate();
 
         } catch (SQLException ex) {
-            getLogger(deleteIssue.class.getName()).log(SEVERE, null, ex);
+            getLogger(DeleteIssue.class.getName()).log(SEVERE, null, ex);
         }
         return true;
     }
@@ -124,7 +124,7 @@ public class issueRepo implements issueDAO {
     public boolean updateIssue(Issue issue) throws SQLException {
         try {
 
-            String update = "UPDATE issue SET placeno = ? WHERE narudzbenicaId = ?";
+            String update = "UPDATE issue SET placeno = ? WHERE ssueId = ?";
 
             PreparedStatement pst = con.prepareStatement(update);
 
@@ -166,7 +166,7 @@ public class issueRepo implements issueDAO {
             }
 
         } catch (SQLException ex) {
-            getLogger(issueRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(IssueRepo.class.getName()).log(SEVERE, null, ex);
         } finally {
             con.close();
         }
@@ -180,7 +180,7 @@ public class issueRepo implements issueDAO {
         try {
 
             String select = "SELECT i.issueId, i.studentId, i.bookId, i.issueDate, i.returnDate, b.name as 'name', b.author as 'author', s.firstName as 'firstName', s.lastName as 'lastName'"
-                    + "FROM issue i JOIN book b ON i.bookId = b.bookId JOIN student s ON i.studentId = s.studentId WHERE returnDate > date(now())";
+                    + "FROM issue i JOIN book b ON i.bookId = b.bookId JOIN student s ON i.studentId = s.studentId";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(select);
@@ -202,7 +202,7 @@ public class issueRepo implements issueDAO {
             }
 
         } catch (SQLException ex) {
-            getLogger(issueRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(IssueRepo.class.getName()).log(SEVERE, null, ex);
         } finally {
             con.close();
         }

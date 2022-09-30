@@ -5,7 +5,7 @@
  */
 package Controllers;
 
-import RepoPattern.issueRepo;
+import RepoPattern.StudentRepo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,31 +20,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Marija
  */
-public class deleteIssue extends HttpServlet {
+public class DeleteStudent extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try
-        {
-            String id=  request.getParameter("issueId");
-            new issueRepo().delete(id);
+        try (PrintWriter out = response.getWriter()) {
+           new StudentRepo().delete(request.getParameter("studentId"));
+            request.setAttribute("result", "True");
+            request.getRequestDispatcher("studentList.jsp").forward(request, response);
+        }
+        catch (SQLException ex) {
             
-            request.setAttribute("result2", "True");
-            request.getRequestDispatcher("issues.jsp").forward(request, response);
-            
-        } catch (SQLException ex) {
-            getLogger(deleteIssue.class.getName()).log(SEVERE, null, ex);
-        
+            getLogger(DeleteStudent.class.getName()).log(SEVERE, null, ex);
         }
     }
 

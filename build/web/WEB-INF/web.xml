@@ -5,8 +5,8 @@
         <servlet-class>Controllers.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>studentRepo</servlet-name>
-        <servlet-class>RepoPattern.studentRepo</servlet-class>
+        <servlet-name>StudentRepo</servlet-name>
+        <servlet-class>RepoPattern.StudentRepo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
@@ -17,32 +17,32 @@
         <servlet-class>Controllers.SignIn</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>issueRepo</servlet-name>
-        <servlet-class>RepoPattern.issueRepo</servlet-class>
+        <servlet-name>IssueRepo</servlet-name>
+        <servlet-class>RepoPattern.IssueRepo</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>deleteIssue</servlet-name>
-        <servlet-class>Controllers.deleteIssue</servlet-class>
+        <servlet-name>DeleteIssue</servlet-name>
+        <servlet-class>Controllers.DeleteIssue</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>insertIssue</servlet-name>
-        <servlet-class>Controllers.insertIssue</servlet-class>
+        <servlet-name>InsertIssue</servlet-name>
+        <servlet-class>Controllers.InsertIssue</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>deleteStudent</servlet-name>
-        <servlet-class>Controllers.deleteStudent</servlet-class>
+        <servlet-name>DeleteStudent</servlet-name>
+        <servlet-class>Controllers.DeleteStudent</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>insertBook</servlet-name>
-        <servlet-class>Controllers.insertBook</servlet-class>
+        <servlet-name>InsertBook</servlet-name>
+        <servlet-class>Controllers.InsertBook</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>studentRepo</servlet-name>
-        <url-pattern>/studentRepo</url-pattern>
+        <servlet-name>StudentRepo</servlet-name>
+        <url-pattern>/StudentRepo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
@@ -53,24 +53,24 @@
         <url-pattern>/SignIn</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>issueRepo</servlet-name>
-        <url-pattern>/issueRepo</url-pattern>
+        <servlet-name>IssueRepo</servlet-name>
+        <url-pattern>/IssueRepo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>deleteIssue</servlet-name>
-        <url-pattern>/deleteIssue</url-pattern>
+        <servlet-name>DeleteIssue</servlet-name>
+        <url-pattern>/DeleteIssue</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>insertIssue</servlet-name>
-        <url-pattern>/insertIssue</url-pattern>
+        <servlet-name>InsertIssue</servlet-name>
+        <url-pattern>/InsertIssue</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>deleteStudent</servlet-name>
-        <url-pattern>/deleteStudent</url-pattern>
+        <servlet-name>DeleteStudent</servlet-name>
+        <url-pattern>/DeleteStudent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>insertBook</servlet-name>
-        <url-pattern>/insertBook</url-pattern>
+        <servlet-name>InsertBook</servlet-name>
+        <url-pattern>/InsertBook</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

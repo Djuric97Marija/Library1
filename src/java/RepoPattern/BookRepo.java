@@ -29,23 +29,22 @@ import javax.servlet.http.Part;
  *
  * @author Marija
  */
-public class bookRepo {
+public class BookRepo {
     
      Connection con;
-    public bookRepo() {
+    public BookRepo() {
         try {
             forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            getLogger(bookRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(BookRepo.class.getName()).log(SEVERE, null, ex);
         }
         
         String URL =  "jdbc:mysql://localhost:3306/library", USER = "root", PASS = "";
         try {
             con = getConnection(URL, USER, PASS);
         } catch (SQLException ex) {
-            getLogger(bookRepo.class.getName()).log(SEVERE, null, ex);
-        }
-        
+            getLogger(BookRepo.class.getName()).log(SEVERE, null, ex);
+        }   
     }
     public boolean insert(Book book, Part part) throws SQLException {
        
@@ -69,7 +68,7 @@ public class bookRepo {
             return false;
         } catch (IOException ex) {
            
-            getLogger(bookRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(BookRepo.class.getName()).log(SEVERE, null, ex);
             return false;
         }
         
@@ -125,7 +124,7 @@ public class bookRepo {
                  books.add(book);
              }
         } catch (SQLException ex) {
-            getLogger(bookRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(BookRepo.class.getName()).log(SEVERE, null, ex);
         }
         return books; 
     }
@@ -149,7 +148,7 @@ public class bookRepo {
              
             }
         } catch (SQLException ex) {
-            getLogger(bookRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(BookRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
             con.close();
@@ -157,91 +156,5 @@ public class bookRepo {
         return book;
     
     }
- /*    @Override
-    public boolean update(Book book, Part part) throws SQLException, IOException {
-       
-        String slika = "slika = ?,";
-        
-        String update = "update buket "
-                      + "set naziv = ?,"
-                      + "cena = ?,"
-                      + "vrsta = ?,";
-              
-        if (part.getSize()!=0)
-            update += slika;
-        
-                 update += "opis = ?"+
-                  "where buketId = ?";     
-                
-        try {
-            PreparedStatement pst = con.prepareStatement(update);
-
-            pst.setString(1, buket.getNaziv());
-            pst.setInt(2, buket.getCena());
-            pst.setString(3, buket.getVrsta());
-            
-            InputStream is;
-            if(part.getSize()!=0){
-                is = part.getInputStream();
-                pst.setBlob(4, is);
-                pst.setString(5,buket.getOpis());
-                pst.setInt(6, buket.getBuketId());
-            }
-            else{
-                pst.setString(4, buket.getOpis());
-                pst.setInt(5, buket.getBuketId());
-            }
-            pst.executeUpdate();
-            
-            return true;
-            
-        } catch (SQLException e) {
-          return false;
-        }
-    }
-
-    @Override
-    public void brisanje(String Id) throws SQLException {
-        
-    try {
-          
-            String delete = "delete from  buket where buketId = " + Id;
-            PreparedStatement ps  = con.prepareStatement(delete);
-
-            ps.executeUpdate();
-  
-        } catch (SQLException ex) {
-            getLogger(buketRepo.class.getName()).log(SEVERE, null, ex);
-        }
-        
-    }
-  
-     @Override
-    public Buket selectByUsername(String username) throws SQLException {
-    
-         Buket buket = new Buket();
-        try {
-            String select = "select * from buket where naziv = '" + username +"'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(select);
-
-            while(rs.next()){
-                buket.setBuketId(rs.getInt("buketId"));
-                buket.setNaziv(rs.getString("naziv"));
-                buket.setCena(rs.getInt("cena"));
-                buket.setVrsta(rs.getString("vrsta"));
-                buket.setSlika(rs.getBlob("slika"));
-                buket.setOpis(rs.getString("opis"));
-                }
-        
-        } catch (SQLException ex) {
-            getLogger(buketRepo.class.getName()).log(SEVERE, null, ex);
-        }
-        finally{
-            con.close();
-        }
-       
-        return buket;
-    }
-*/
+ 
 }

@@ -84,7 +84,7 @@
             if (result != null)
                   if (result.equals("True")) {%>
         <script type="text/javascript">
-            swal("Dobar  posao", "Nov aranžman je dodat!", "success")
+            swal("Success", "Inserted!", "success")
                     .then(function () {
                         window.location = "index.jsp";
                     });
@@ -102,7 +102,7 @@
 
         <% }%>
 
-    <center><form action="insertBook" method="post" enctype="multipart/form-data" style="width: 550px; margin: 2% auto; opacity: 0.7; background: rgba(0,0,0,0.5); color: white;">
+    <center><form action="InsertBook" method="post" enctype="multipart/form-data" style="width: 550px; margin: 2% auto; opacity: 0.7; background: rgba(0,0,0,0.5); color: white;">
             <h3 style="color: white;  margin-top: 2%">Insert New Book</h3>   
             <div class="col-9" style="color:white;  margin: 2% auto">
                 

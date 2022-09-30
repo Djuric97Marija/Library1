@@ -4,7 +4,7 @@
     Author     : Marija
 --%>
 <%@page import="Models.Student"%>
-<%@page import="RepoPattern.studentRepo"%>
+<%@page import="RepoPattern.StudentRepo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -103,21 +103,21 @@
             }
         %>
         <div style="opacity: 0.7; background: rgba(0,0,0,0.5); width:1500px;height:400px; color: white">
-            <h2 style=" margin-bottom: 1%; margin-left: 15%; margin-top: 1%;" align="center">Prijavljeni korisnici</h2>       
+            <h2 style=" margin-bottom: 1%; margin-left: 15%; margin-top: 1%;" align="center">Students</h2>       
             <div align="center" style="color: white;">
                 <table align="center" class="responsive-table" style="background: rgba(0,0,0,0.3); width:1400px;height:300px; font-size: 19px;">       
                     <tr style="color: white;">
                         <td style="width:130px;" class="align-middle text-center" scope="col"> </td>
-                        <td style="width:130px;" class="align-middle text-center" scope="col">Ime </td>
-                        <td style="width:130px;" class="align-middle text-center" scope="col">Prezime</td>
-                        <td style="width:130px;" class="align-middle text-center" scope="col">Korisničko ime</td>
+                        <td style="width:130px;" class="align-middle text-center" scope="col">Name </td>
+                        <td style="width:130px;" class="align-middle text-center" scope="col">Last Name</td>
+                        <td style="width:130px;" class="align-middle text-center" scope="col">Username</td>
                         <td style="width:130px;" class="align-middle text-center" scope="col">Email</td>
-                        <td style="width:130px;" class="align-middle text-center" scope="col">Broj telefona</td>
+                        <td style="width:130px;" class="align-middle text-center" scope="col">Phone Number</td>
                     </tr>
                     <tbody>
                         <%
                             int i = 1;
-                            for (Student student : new studentRepo().list())
+                            for (Student student : new StudentRepo().list())
                                 {%>
                         <tr style="color: white; margin-bottom: 15%;">
                             <td style="width:130px;" class="align-middle text-center"><%= i++%></td>
@@ -128,7 +128,7 @@
                             <td style="width:130px;" class="align-middle text-center"><%=student.getPhoneNumber().replace("-", " ")%></td> 
                   
                             <td style="width:130px;" class="align-middle text-center"> 
-                        <a href="${pageContext.request.contextPath}/deleteStudent?studentId=<%=student.getStudentId()%>">
+                        <a href="${pageContext.request.contextPath}/DeleteStudent?studentId=<%=student.getStudentId()%>">
                             <i style="color: red; font-size: larger; border-width: thin;" class="fa fa-trash-alt">Remove</i>                                  
                         </a>
                         </tr>

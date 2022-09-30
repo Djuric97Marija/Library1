@@ -6,7 +6,7 @@
 package Controllers;
 
 import Models.Book;
-import RepoPattern.bookRepo;
+import RepoPattern.BookRepo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ import javax.servlet.http.Part;
  * @author Marija
  */
 @MultipartConfig(maxFileSize = 161772716)
-public class insertBook extends HttpServlet {
+public class InsertBook extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,7 +52,7 @@ public class insertBook extends HttpServlet {
             Part part = request.getPart("picture");
             book.setQuantity(request.getParameter("quantity"));
             
-            if (new bookRepo().insert(book, part)) {
+            if (new BookRepo().insert(book, part)) {
                 request.setAttribute("result", "True");
                 request.getRequestDispatcher("allBooks.jsp").forward(request, response);
             } else {
@@ -62,7 +62,7 @@ public class insertBook extends HttpServlet {
         } catch (NumberFormatException ex) {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(insertBook.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertBook.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -5,8 +5,7 @@
  */
 package Controllers;
 
-import Models.Student;
-import RepoPattern.StudentRepo;
+import RepoPattern.IssueRepo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -16,42 +15,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Marija
  */
-public class SignIn extends HttpServlet {
+public class DeleteIssue extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-        try (PrintWriter out = response.getWriter()) {
-            Student student = new Student();
-            student.setFirstName(request.getParameter("firstName"));
-            student.setLastName(request.getParameter("lastName"));
-            student.setUsername(request.getParameter("username"));
-            student.setEmail(request.getParameter("email"));
-            student.setPass(request.getParameter("pass"));
-            student.setPhoneNumber(request.getParameter("phoneNumber"));
-
+        try
+        {
+            String id=  request.getParameter("issueId");
+            new IssueRepo().delete(id);
             
-            if(new StudentRepo().insert(student)){
-                request.setAttribute("result", "True");
-                request.getRequestDispatcher("signIn.jsp").forward(request, response);
-                HttpSession session = request.getSession();
-                session.setAttribute("logged", student.getUsername());
-                session.setAttribute("loggedRole", "2");
-                }
-            else{
-                request.setAttribute("result", "False");
-                request.getRequestDispatcher("signIn.jsp").forward(request, response);
-            }
-           
+            request.setAttribute("result2", "True");
+            request.getRequestDispatcher("issues.jsp").forward(request, response);
+            
         } catch (SQLException ex) {
-            getLogger(SignIn.class.getName()).log(SEVERE, null, ex);
+            getLogger(DeleteIssue.class.getName()).log(SEVERE, null, ex);
+        
         }
     }
 

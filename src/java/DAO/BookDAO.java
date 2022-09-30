@@ -18,7 +18,7 @@ import javax.servlet.http.Part;
  *
  * @author Marija
  */
-public interface bookDAO {
+public interface BookDAO {
     boolean insert(Book book, Part part) throws SQLException;
     void picture(HttpServletRequest request, HttpServletResponse response, String bookId)
             throws ServletException, IOException, SQLException ;

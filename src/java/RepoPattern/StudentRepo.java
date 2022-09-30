@@ -5,7 +5,6 @@
  */
 package RepoPattern;
 
-import DAO.studentDAO;
 import Models.Student;
 import static java.lang.Class.forName;
 import java.sql.Connection;
@@ -20,26 +19,27 @@ import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
+import DAO.StudentDAO;
 
 /**
  *
  * @author Marija
  */
-public class studentRepo implements studentDAO{
+public class StudentRepo implements StudentDAO{
 
     Connection con;
-    public studentRepo() {
+    public StudentRepo() {
         try {
             forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         
         String URL =  "jdbc:mysql://localhost:3306/library", USER = "root", PASS = "";
         try {
             con = getConnection(URL, USER, PASS);
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         
     }
@@ -57,7 +57,7 @@ public class studentRepo implements studentDAO{
                 return true;
         
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
             con.close();
@@ -78,7 +78,7 @@ public class studentRepo implements studentDAO{
                 return rs.getString("roleId");
             
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
             con.close();
@@ -106,7 +106,7 @@ public class studentRepo implements studentDAO{
                 }
         
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
             con.close();
@@ -134,7 +134,7 @@ public class studentRepo implements studentDAO{
                 }
         
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
             con.close();
@@ -179,7 +179,7 @@ public class studentRepo implements studentDAO{
             ps.executeUpdate();
   
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
     }
 
@@ -206,7 +206,7 @@ public class studentRepo implements studentDAO{
                 studenti.add(student);
              }
         } catch (SQLException ex) {
-            getLogger(studentRepo.class.getName()).log(SEVERE, null, ex);
+            getLogger(StudentRepo.class.getName()).log(SEVERE, null, ex);
         }
         finally{
            con.close();

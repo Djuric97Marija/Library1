@@ -4,5 +4,5 @@
     Author     : Marija
 --%>
 
-<%@page import="RepoPattern.bookRepo"%>
-<%new bookRepo().picture(request, response, request.getParameter("bookId")); %>
+<%@page import="RepoPattern.BookRepo"%>
+<%new BookRepo().picture(request, response, request.getParameter("bookId")); %>

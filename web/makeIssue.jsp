@@ -4,12 +4,12 @@
     Author     : Marija
 --%>
 
-<%@page import="Models.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="RepoPattern.issueRepo"%>
+<%@page import="Models.Book"%>
+<%@page import="RepoPattern.IssueRepo"%>
 <%@page import="Models.Issue"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="RepoPattern.bookRepo"%>
+<%@page import="RepoPattern.BookRepo"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,8 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Thasadith&display=swap" rel="stylesheet">    
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Unos podataka</title> 
-
+        <title>Make Issue</title> 
         <link rel="shortcut icon" type="image/jpg" href="pictures/icon.png"/>
         <style>
             label{
@@ -52,7 +51,7 @@
     </head>
     <body style="font-family: 'Thasadith', sans-serif; color:black;">
         <%@include file="navbar.jsp" %>  
-        <form id="form" action="insertIssue" method="post" style="color: #e1d3c1; margin-left: 550px; margin-right: 500px">
+        <form id="form" action="InsertIssue" method="post" style="color: #e1d3c1; margin-left: 550px; margin-right: 500px">
             <%
                 String loggedRole = "";
                 if (request.getSession().getAttribute("loggedRole") != null) {
@@ -62,24 +61,23 @@
             
         <%
             String id = request.getParameter("bookId");
-            Book book = new bookRepo().select(id);
+            Book book = new BookRepo().select(id);
         %> 
 
         <div class="row" style="opacity: 0.8; background: rgba(0,0,0,0.5); color: white;">         
             <input value="<%=request.getParameter("bookId")%>" name="bookId" type="hidden">
-
             <div class="col " style="margin-top: 15px; color: white;">
                 <h4 align="center" style="color: whitesmoke;">Reservation of - <%= book.getName()%></h4>
                 <div class="form-group">
                     <label style="color: whitesmoke;">Name</label>
-                    <input type="text" name="naziv" value="<%=book.getName()%>" placeholder="Ime buketa" class="form-control">
+                    <input type="text" name="name" value="<%=book.getName()%>" placeholder="Name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label style="color: whitesmoke;">Author</label>
-                    <input type="text" name="cena" value="<%=book.getAuthor()%>" placeholder="Cena" class="form-control">
+                    <input type="text" name="author" value="<%=book.getAuthor()%>" placeholder="Author" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label style="color: whitesmoke;">Opis</label>
+                    <label style="color: whitesmoke;">Description</label>
                     <p><%= book.getDescription()%></p>
                 </div>
             </div>
@@ -89,7 +87,7 @@
             <h2>Reservation For:</h2>
             <tr>
                 <td style="padding-top:2%"></td>
-                <td style="margin: 10px; padding: 10px;"><input type="date" min="10/10/2022" required  class="form-control"  name="issueDate"></td>
+                <td style="margin: 10px; padding: 10px;"><input type="date" required  class="form-control"  name="issueDate"></td>
             </tr>
             <br><br>
             <tr>
@@ -100,10 +98,8 @@
             <input form="form" align="center" id ="button-a" type="submit" style="height:3rem; background-color: #4e555b; width: 13rem; border: 1px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 1rem;" value="Make Reservation" class="btn-primary" >
         </div>
 
-        <%
-                }%>
-
+        <%  }
+        %>
     </form>
-
 </body>
 </html>
